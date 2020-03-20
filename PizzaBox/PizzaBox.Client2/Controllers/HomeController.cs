@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PizzaBox.Client2.Models;
+using PizzaBox.Domain.Models;
 using PizzaBox.Storing.Repositories;
 
 namespace PizzaBox.Client2.Controllers
@@ -36,9 +37,16 @@ namespace PizzaBox.Client2.Controllers
     {
       if(ModelState.IsValid) 
       { 
-        if(_up.Check(login.Username, login.Password) != null) { return RedirectToAction("PizzaHome"); }
+        User user = _up.Check(login.Username, login.Password);
+        if(user != null) 
+        { 
+          if(user.UserType == "Admin") { return View("Admin"); }
+
+          return View("Customer", user);
+        }
       }
-      return View("Login", login);
+
+      return View(login);
     }
 
     public IActionResult Privacy()
