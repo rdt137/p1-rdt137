@@ -1,0 +1,19 @@
+@{
+    ViewData["Title"] = "Login Page";
+}
+
+@model PizzaBox.Client2.Models.LoginModel
+
+<form action="/home/login" method="post">
+  <label asp-for="Username">Username</label>
+  <input type="text" asp-for="Username">
+  @Html.ValidationMessageFor(lm => lm.Username)
+  <br>
+
+  <label asp-for="Password">Password</label>
+  <input type="text" asp-for="Password">
+  @Html.ValidationMessageFor(lm => lm.Password)
+  <br>
+
+  <button type="submit">Log In</button>
+</form>
