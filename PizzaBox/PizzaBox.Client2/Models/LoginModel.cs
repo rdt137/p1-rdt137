@@ -12,7 +12,6 @@ namespace PizzaBox.Client2.Models
 
     [Required(ErrorMessage = "Please enter a password")]
     [DataType(DataType.Text)]
-    [PasswordAttribute(ErrorMessage = "Incorrect Password")]
     public string Password { get; set; }
   }
 }
